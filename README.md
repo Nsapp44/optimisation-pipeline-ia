@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="Optimisation Pipeline IA - Claude Code x Codex, measured" width="100%">
+<img src="assets/hero.svg" alt="Optimisation Pipeline IA - Claude x Codex, Claude cost divided by 4" width="100%">
 
 # Optimisation Pipeline IA
 
@@ -62,7 +62,7 @@ Codex is a plus, never a dependency. Without it: Sonnet alone, `architecte` (Opu
 Real-codebase test ("grandeur nature"): a FastAPI backend, baseline = **7 pre-existing failing tests**, ~540 passing. Cost = Claude spend only. Details: [`results/mesures_grandeur_nature_2026-10-16.md`](results/mesures_grandeur_nature_2026-10-16.md).
 
 <div align="center">
-<img src="assets/cost-chart.svg" alt="Bar chart of Claude cost per arm on ENH-004, with failing test counts" width="900">
+<img src="assets/dashboard.svg" alt="Dashboard of Claude cost per arm on ENH-004, with failing test counts and the baseline of 7" width="900">
 </div>
 
 ### ENH-004 (hard: LRU eviction, retention, paginated replay)
@@ -97,6 +97,10 @@ Note: 7 existing tests contradicted the plan on purpose, so a few extra red test
 </details>
 
 ## Architecture
+
+<div align="center">
+<img src="assets/pipeline-flow.svg" alt="Animated pipeline: Plan, Codex implements (3 max in parallel), tests, one Claude verification, done; without OpenAI: Sonnet alone plus architecte" width="900">
+</div>
 
 ```mermaid
 flowchart TD
@@ -196,6 +200,31 @@ In [`results/`](results/): `mesures.md` (running log), `RAPPORT_COMPARATIF_2026-
 
 </details>
 
+## Built by Claude × Codex
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### Claude Code
+
+Designs, verifies, orchestrates. Main thread plus sub-agents; one verification of every Codex result.
+
+</td>
+<td width="50%" valign="top">
+
+### Codex
+
+Implements, investigates. Bounded, test-controlled code and hard multi-file investigations.
+
+</td>
+</tr>
+</table>
+
+Both are co-authors of the commits.
+
+**Contributors:** Nsapp44 · Claude · Codex
+
 ## Honest limitations
 
 > [!WARNING]
@@ -218,7 +247,7 @@ codex/      cx.sh wrapper (Codex roles, max 3 parallel via CX_MAX_PARALLEL)
 docs/       EXECUTANT.md: rules for using Codex as implementer / reviewer
 AGENTS.md   single shared rules file; CLAUDE.md imports it (@AGENTS.md)
 results/    measurements and reports (French)
-assets/     README banner and cost chart (SVG)
+assets/     README visuals (SVG): hero, pipeline-flow, dashboard, plus banner and cost-chart
 ```
 
 ## License
