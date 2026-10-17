@@ -102,17 +102,9 @@ Note: 7 existing tests contradicted the plan on purpose, so a few extra red test
 <img src="assets/pipeline-flow.svg" alt="Animated pipeline: Plan, Codex implements (3 max in parallel), tests, one Claude verification, done; without OpenAI: Sonnet alone plus architecte" width="900">
 </div>
 
-```mermaid
-flowchart TD
-    U[User] --> M["Claude main thread (Sonnet, effort medium)<br/>designs, decides, verifies"]
-    M -->|read 3+ files, search| L["lecteur / chercheur<br/>(Haiku / Sonnet)"]
-    M -->|run tests, long output| T["testeur (Haiku)"]
-    M -->|write designed code > ~30 lines| E["executant (Sonnet)"]
-    M -->|triggers only: red test after 2 fixes,<br/>contradiction, deep bug| A["architecte (Opus, medium)"]
-    M -.->|optional, if codex available| C["cx.sh executant (Codex)<br/>implements ONCE"]
-    C -.-> V["ONE Claude verification<br/>(no agents, no back-and-forth)"]
-    V -.-> M
-```
+<div align="center">
+<img src="assets/architecture.svg" alt="Claude main thread delegates to lecteur, testeur, executant, architecte, and optionally Codex followed by one Claude verification" width="900">
+</div>
 
 Rules that came out of the measurements: one deliverable per agent; an agent never waits more than 5 minutes (prompt cache lifetime); no workaround to make a test pass (leave it red and escalate); a Codex result is never accepted as is.
 
