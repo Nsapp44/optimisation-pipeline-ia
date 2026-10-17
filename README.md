@@ -206,14 +206,14 @@ In [`results/`](results/): `mesures.md` (running log), `RAPPORT_COMPARATIF_2026-
 <tr>
 <td width="50%" valign="top">
 
-### Claude Code
+### <img src="assets/logo-claude.svg" width="28" height="28" align="absmiddle"> Claude Code
 
 Designs, verifies, orchestrates. Main thread plus sub-agents; one verification of every Codex result.
 
 </td>
 <td width="50%" valign="top">
 
-### Codex
+### <img src="assets/logo-codex.svg" width="28" height="28" align="absmiddle"> Codex
 
 Implements, investigates. Bounded, test-controlled code and hard multi-file investigations.
 
