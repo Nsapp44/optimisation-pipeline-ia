@@ -14,42 +14,42 @@
 <rect x="30" y="370" width="212" height="80" rx="14" fill="#34d399" fill-opacity="0.18" stroke="#34d399" stroke-width="2"/>
 <text x="136.0" y="406.0" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">lecteur / chercheur</text>
 <text x="136.0" y="426.0" font-size="13" text-anchor="middle" fill="#cbd5e1">Haiku / Sonnet</text>
-<rect x="50" y="334" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
-<text x="136" y="348" font-size="12.5" text-anchor="middle" fill="#94a3b8">read 3+ files,</text>
-<text x="136" y="364" font-size="12.5" text-anchor="middle" fill="#94a3b8">web search</text>
+<rect x="50" y="324" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
+<text x="136" y="338" font-size="12.5" text-anchor="middle" fill="#94a3b8">read 3+ files,</text>
+<text x="136" y="354" font-size="12.5" text-anchor="middle" fill="#94a3b8">web search</text>
 <path d="M600 272V300H368V366" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#a)"/>
 <rect x="262" y="370" width="212" height="80" rx="14" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="2"/>
 <text x="368.0" y="406.0" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">testeur</text>
 <text x="368.0" y="426.0" font-size="13" text-anchor="middle" fill="#cbd5e1">Haiku</text>
-<rect x="282" y="334" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
-<text x="368" y="348" font-size="12.5" text-anchor="middle" fill="#94a3b8">run tests,</text>
-<text x="368" y="364" font-size="12.5" text-anchor="middle" fill="#94a3b8">long output</text>
+<rect x="282" y="324" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
+<text x="368" y="338" font-size="12.5" text-anchor="middle" fill="#94a3b8">run tests,</text>
+<text x="368" y="354" font-size="12.5" text-anchor="middle" fill="#94a3b8">long output</text>
 <path d="M600 272V300H600V366" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#a)"/>
 <rect x="494" y="370" width="212" height="80" rx="14" fill="#fb923c" fill-opacity="0.18" stroke="#fb923c" stroke-width="2"/>
 <text x="600.0" y="406.0" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">executant</text>
 <text x="600.0" y="426.0" font-size="13" text-anchor="middle" fill="#cbd5e1">Sonnet</text>
-<rect x="514" y="334" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
-<text x="600" y="348" font-size="12.5" text-anchor="middle" fill="#94a3b8">write designed</text>
-<text x="600" y="364" font-size="12.5" text-anchor="middle" fill="#94a3b8">code over ~30 lines</text>
+<rect x="514" y="324" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
+<text x="600" y="338" font-size="12.5" text-anchor="middle" fill="#94a3b8">write designed</text>
+<text x="600" y="354" font-size="12.5" text-anchor="middle" fill="#94a3b8">code over ~30 lines</text>
 <path d="M600 272V300H832V366" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#a)"/>
 <rect x="726" y="370" width="212" height="80" rx="14" fill="#f472b6" fill-opacity="0.18" stroke="#f472b6" stroke-width="2"/>
 <text x="832.0" y="406.0" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">architecte</text>
 <text x="832.0" y="426.0" font-size="13" text-anchor="middle" fill="#cbd5e1">Opus, medium</text>
-<rect x="746" y="322" width="172" height="54" rx="6" fill="#0f172a" fill-opacity="0.85"/>
-<text x="832" y="336" font-size="12.5" text-anchor="middle" fill="#94a3b8">triggers only: red test</text>
-<text x="832" y="352" font-size="12.5" text-anchor="middle" fill="#94a3b8">after 2 fixes,</text>
-<text x="832" y="368" font-size="12.5" text-anchor="middle" fill="#94a3b8">contradiction, deep bug</text>
+<rect x="746" y="312" width="172" height="54" rx="6" fill="#0f172a" fill-opacity="0.85"/>
+<text x="832" y="326" font-size="12.5" text-anchor="middle" fill="#94a3b8">triggers only: red test</text>
+<text x="832" y="342" font-size="12.5" text-anchor="middle" fill="#94a3b8">after 2 fixes,</text>
+<text x="832" y="358" font-size="12.5" text-anchor="middle" fill="#94a3b8">contradiction, deep bug</text>
 <path d="M600 272V300H1064V366" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
 <rect x="958" y="370" width="212" height="80" rx="14" fill="#2dd4bf" fill-opacity="0.18" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="6 5"/>
 <text x="1064.0" y="406.0" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">cx.sh executant</text>
 <text x="1064.0" y="426.0" font-size="13" text-anchor="middle" fill="#cbd5e1">Codex, optional</text>
-<rect x="978" y="334" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
-<text x="1064" y="348" font-size="12.5" text-anchor="middle" fill="#94a3b8">implements ONCE</text>
-<text x="1064" y="364" font-size="12.5" text-anchor="middle" fill="#94a3b8">(3 calls max in parallel)</text>
+<rect x="978" y="324" width="172" height="38" rx="6" fill="#0f172a" fill-opacity="0.85"/>
+<text x="1064" y="338" font-size="12.5" text-anchor="middle" fill="#94a3b8">implements ONCE</text>
+<text x="1064" y="354" font-size="12.5" text-anchor="middle" fill="#94a3b8">(3 calls max in parallel)</text>
 <rect x="958" y="490" width="212" height="52" rx="14" fill="#818cf8" fill-opacity="0.18" stroke="#818cf8" stroke-width="2" stroke-dasharray="6 5"/>
 <text x="1064.0" y="512.0" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">ONE Claude verification</text>
 <text x="1064.0" y="532.0" font-size="13" text-anchor="middle" fill="#cbd5e1">no agents, no back-and-forth</text>
 <path d="M1064 450V488" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
-<path d="M958 516H840Q820 516 820 496V300Q820 272 800 250" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
-<text x="700" y="520" font-size="12.5" text-anchor="middle" fill="#94a3b8">result goes back to the main thread</text>
+<path d="M1170 516H1186V231H802" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<text x="1000" y="236" font-size="12.5" text-anchor="middle" fill="#94a3b8">verified result returns to the main thread</text>
 </svg>
