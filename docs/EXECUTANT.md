@@ -50,7 +50,13 @@ Source de vérité des mesures : `<PROJECT_DIR>/SUIVI.md`, `docs\mesures.md`. D�
 | architecte | astra high (avis dur, avec parcimonie : quota) |
 | analyste | astra medium read-only (enquête courante) |
 | enqueteur | astra high read-only (enquête difficile ; plafond, jamais xhigh) |
-Table provisoire (séries 4-6). Discipline de Codex installée dans `~/.codex/AGENTS.md` (copie : `docs\AGENTS_codex_brouillon.md`).
+Table provisoire (séries 4-6). Discipline de Codex : `AGENTS.md` à la racine du dépôt (copié dans le projet ou dans `~/.codex/AGENTS.md`).
+### Variables de `cx.sh` (toutes optionnelles)
+- `CX_AGENTS_DIR` (défaut `$HOME/.claude/agents`), `CX_LOG` (défaut `$HOME/.cx_tokens.log`), `CX_NODE_DIR`, `CX_WIN_SANDBOX` (`none` hors Windows), `CX_M_<RÔLE>` (modèle d'un rôle).
+- `CX_BIN` : exécutable appelé à la place de `codex` (défaut `codex` ; sert aux tests factices).
+- `CX_MAX_PARALLEL` : nombre maximal de processus Codex simultanés, tous appels `cx.sh` confondus (défaut 3). Sémaphore par verrous `mkdir` `slot1..slotN`.
+- `CX_LOCK_DIR` : dossier des verrous (défaut `${TMPDIR:-/tmp}/cx-locks`). Un verrou dont le pid (écrit dans le slot) est mort est nettoyé.
+- `CX_LOCK_WAIT` : attente maximale d'un slot libre, en secondes (défaut 600) ; au-delà, erreur claire et code de sortie 3.
 Échelle d'un bug qui résiste : Sonnet medium (2 essais) → Codex astra high read-only (si dispo) → `architecte` Claude. Pas d'agent `debug`.
 
 ## Usage technique

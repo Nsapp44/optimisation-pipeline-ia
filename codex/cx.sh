@@ -11,6 +11,10 @@
 #   CX_LOG          token log file, one line per call            (default: $HOME/.cx_tokens.log)
 #   CX_NODE_DIR     directory containing node/codex to prepend to PATH (default: empty = rely on PATH)
 #   CX_WIN_SANDBOX  Windows sandbox mode for Codex ("unelevated"; set to "none" on Linux/macOS) (default: unelevated)
+#   CX_BIN          codex executable to call (default: codex; set to a stub for tests)
+#   CX_MAX_PARALLEL max simultaneous Codex processes, counted across all cx.sh calls (default: 3)
+#   CX_LOCK_DIR     directory holding the slot locks            (default: ${TMPDIR:-/tmp}/cx-locks)
+#   CX_LOCK_WAIT    seconds to wait for a free slot before failing (default: 600)
 #   CX_M_*          override the model of a role, e.g. CX_M_EXECUTANT=gpt-6-sol (see table below)
 #
 # Model names below are the ones available on the author's OpenAI account at measurement time:
@@ -52,8 +56,35 @@ esac
 sandbox_args=()
 [ "$WIN_SANDBOX" != "none" ] && sandbox_args=(-c "windows.sandbox=\"$WIN_SANDBOX\"")
 
+# --- Concurrency limit: at most CX_MAX_PARALLEL codex processes at once (mkdir-based semaphore). ----
+BIN="${CX_BIN:-codex}"
+MAX_PAR="${CX_MAX_PARALLEL:-3}"
+LOCK_DIR="${CX_LOCK_DIR:-${TMPDIR:-/tmp}/cx-locks}"
+LOCK_WAIT="${CX_LOCK_WAIT:-600}"
+mkdir -p "$LOCK_DIR"
+slot=""
+release_slot() { [ -n "$slot" ] && rm -rf "$slot"; slot=""; }
+trap release_slot EXIT
+trap 'release_slot; exit 130' INT
+trap 'release_slot; exit 143' TERM
+waited=0
+while [ -z "$slot" ]; do
+  for i in $(seq 1 "$MAX_PAR"); do
+    d="$LOCK_DIR/slot$i"
+    if mkdir "$d" 2>/dev/null; then echo $$ > "$d/pid"; slot="$d"; break; fi
+    # stale lock: owner pid written in the slot is no longer alive
+    opid=$(cat "$d/pid" 2>/dev/null)
+    if [ -n "$opid" ] && ! kill -0 "$opid" 2>/dev/null; then rm -rf "$d"; fi
+  done
+  [ -n "$slot" ] && break
+  if [ "$waited" -ge "$LOCK_WAIT" ]; then
+    echo "cx.sh: no free Codex slot after ${LOCK_WAIT}s (CX_MAX_PARALLEL=$MAX_PAR, locks in $LOCK_DIR)" >&2; exit 3
+  fi
+  sleep 2; waited=$((waited+2))
+done
+
 # stdin is closed (< /dev/null) so codex never waits for interactive input.
-out=$(codex $extra exec --skip-git-repo-check -C "$dir" -m "$m" \
+out=$("$BIN" $extra exec --skip-git-repo-check -C "$dir" -m "$m" \
       -c "model_reasoning_effort=\"$e\"" -s "$s" "${sandbox_args[@]}" "$prompt" < /dev/null 2>&1)
 rc=$?
 printf '%s\n' "$out"
