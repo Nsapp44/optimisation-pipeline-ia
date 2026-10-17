@@ -22,6 +22,19 @@ Install: copy this file to the root of your project (or to `~/.codex/AGENTS.md` 
 9. Keep a state file (`SUIVI.md` / `STATE.md`) rewritten, not appended, after each step: current state, what did not
    work, exact next step.
 
+## UI mockups and end of subject
+- First mockup or major redesign of a screen: do it with the strongest model at high effort. A weaker model must not
+  start it: it writes the brief in the state file and stops. If a mockup was made on a weaker model anyway, say so at
+  the top of the report and propose a stronger-model pass before coding.
+- Light change on a validated mockup: the mid model does it, then the hard role (`architecte`) reviews the captures.
+  The report always shows: before/after captures side by side, one line per change, the reviewer's verdict (2-3 lines),
+  remaining gaps. Without these, it is not "done".
+- End of subject (state file clean) and the next request is of another nature: before starting, say "new conversation
+  advised, model/effort: X" and wait for the user's choice. A detail to fix on the current subject is finished in the
+  same conversation. A linked subject that needs earlier context is still a new conversation: the state file carries it.
+- Changing model or effort mid-conversation rebuilds the whole cache (about 2x the context): do it at a subject
+  boundary while the context is small.
+
 ## Agent roles
 - Light (Haiku / Codex `lecteur`): search, list, count, read many files, run a command and report its output.
 - Mid (Sonnet / Codex `executant`): write already-designed code, targeted fixes, tests.
