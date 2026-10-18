@@ -1,7 +1,7 @@
 #!/bin/bash
 # cx.sh - Codex roles that mirror the Claude sub-agents in ../agents/ (settings chosen from the measurements in ../results/).
 #
-# usage: cx.sh <lecteur|chercheur|executant|relecteur|architecte|analyste|enqueteur|chasseur-erreurs|securite-web|seo> "<prompt>" [directory]
+# usage: cx.sh <lecteur|chercheur|executant|visuel|relecteur|architecte|analyste|enqueteur|chasseur-erreurs|securite-web|seo> "<prompt>" [directory]
 #
 # The last three roles reuse the body of the Claude agent file $CX_AGENTS_DIR/<role>.md (single source of truth).
 # Call it WITHOUT shell redirection (> file): the output comes back in the calling tool's result.
@@ -36,6 +36,7 @@ case "$role" in
   chercheur)  m="${CX_M_CHERCHEUR:-gpt-6-luna}";  e=low;    s=read-only;       extra="--search" ;;
   executant)  m="${CX_M_EXECUTANT:-gpt-6-sol}";   e=low;    s=workspace-write; extra="" ;;
   relecteur)  m="${CX_M_RELECTEUR:-gpt-6-sol}";   e=medium; s=read-only;       extra="" ;;
+  visuel)     m="${CX_M_VISUEL:-gpt-6-astra}";   e=high;   s=workspace-write; extra="" ;; # UI / mockup / CSS: never the cheap executant
   architecte) m="${CX_M_ARCHITECTE:-gpt-6-astra}"; e=high;  s=read-only;       extra="" ;;
   analyste)   m="${CX_M_ANALYSTE:-gpt-6-astra}";  e=medium; s=read-only;       extra="" ;; # routine investigation / audit
   enqueteur)  m="${CX_M_ENQUETEUR:-gpt-6-astra}"; e=high;   s=read-only;       extra="" ;; # hard investigation. Never xhigh.
