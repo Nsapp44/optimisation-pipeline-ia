@@ -49,6 +49,11 @@ case "$role" in
 Consigne : $prompt" ;;
   *) echo "unknown role: $role" >&2; exit 2 ;;
 esac
+# Guard: visual tasks burn Codex quota and the cheap executant drifts layouts. Default = strongest Claude model;
+# on explicit user request use the "visuel" role. Override: CX_FORCE_EXECUTANT=1
+if [ "$role" = executant ] && [ -z "$CX_FORCE_EXECUTANT" ] && printf '%s' "$prompt" | grep -qiE 'mockup|mock-up|interface|UI|CSS|screenshot|animation|design|logo|svg|layout|maquette|visuel|capture'; then
+  echo "cx.sh: visual task detected -> default is the strongest Claude model; if the user asks for Codex, use role 'visuel' (astra high, write access). executant refused. Force: CX_FORCE_EXECUTANT=1" >&2; exit 3
+fi
 
 # The reader role is told how to read files from the sandbox (PowerShell wording kept: measured on Windows).
 [ "$role" = lecteur ] && prompt="Lis les fichiers avec Get-Content / Select-String (tu as accès au disque en lecture). $prompt"
