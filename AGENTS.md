@@ -26,7 +26,7 @@ Install: copy this file to the root of your project (or to `~/.codex/AGENTS.md` 
 - First mockup or major redesign of a screen: do it with the strongest model at high effort. A weaker model must not
   start it: it writes the brief in the state file and stops. If a mockup was made on a weaker model anyway, say so at
   the top of the report and propose a stronger-model pass before coding.
-- Visual work delegated to Codex uses the strong writing role (`cx.sh visuel`: top model, high effort, write access), never the cheap `executant` and never the read-only `architecte`.
+- Visual work (mockups, UI, CSS) defaults to the strongest Claude model at max effort: it is cheaper in quota and reliable. Codex only takes it when the user explicitly asks, and then through `cx.sh visuel` (top model, high effort, write access), never the cheap `executant` and never the read-only `architecte`.
 - Light change on a validated mockup: the mid model does it, then the hard role (`architecte`) reviews the captures.
   The report always shows: before/after captures side by side, one line per change, the reviewer's verdict (2-3 lines),
   remaining gaps. Without these, it is not "done".

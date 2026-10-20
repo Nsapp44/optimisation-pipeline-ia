@@ -163,7 +163,7 @@ Agent files are in French (the author's working language); the instructions are 
 | `lecteur` | luna, low | read-only | read files |
 | `chercheur` | luna, low + `--search` | read-only | web research |
 | `executant` | sol, low | workspace-write | write bounded, test-controlled code |
-| `visuel` | astra, high | workspace-write | UI / mockup / CSS work (never `executant`: the cheap model drifts layouts) |
+| `visuel` | astra, high | workspace-write | UI / mockup / CSS work, only when the user explicitly asks (visual work burns Codex quota; default is the strongest Claude model). Never `executant`: the cheap model drifts layouts |
 | `relecteur` | sol, medium | read-only | review |
 | `architecte` | astra, high | read-only | hard opinion (sparingly: quota) |
 | `analyste` | astra, medium | read-only | routine investigation / audit |

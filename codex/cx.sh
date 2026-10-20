@@ -36,7 +36,7 @@ case "$role" in
   chercheur)  m="${CX_M_CHERCHEUR:-gpt-6-luna}";  e=low;    s=read-only;       extra="--search" ;;
   executant)  m="${CX_M_EXECUTANT:-gpt-6-sol}";   e=low;    s=workspace-write; extra="" ;;
   relecteur)  m="${CX_M_RELECTEUR:-gpt-6-sol}";   e=medium; s=read-only;       extra="" ;;
-  visuel)     m="${CX_M_VISUEL:-gpt-6-astra}";   e=high;   s=workspace-write; extra="" ;; # UI / mockup / CSS: never the cheap executant
+  visuel)     m="${CX_M_VISUEL:-gpt-6-astra}";   e=high;   s=workspace-write; extra="" ;; # UI / mockup / CSS, only on explicit user request (heavy quota; default = strongest Claude model). Never the cheap executant
   architecte) m="${CX_M_ARCHITECTE:-gpt-6-astra}"; e=high;  s=read-only;       extra="" ;;
   analyste)   m="${CX_M_ANALYSTE:-gpt-6-astra}";  e=medium; s=read-only;       extra="" ;; # routine investigation / audit
   enqueteur)  m="${CX_M_ENQUETEUR:-gpt-6-astra}"; e=high;   s=read-only;       extra="" ;; # hard investigation. Never xhigh.
