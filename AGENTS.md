@@ -22,6 +22,11 @@ Install: copy this file to the root of your project (or to `~/.codex/AGENTS.md` 
 9. Keep a state file (`SUIVI.md` / `STATE.md`) rewritten, not appended, after each step: current state, what did not
    work, exact next step.
 
+## Scheduled routines
+
+- A routine run is a real local session, started in the project folder where the routine was created: create it from that project's conversation. The scheduling tool has no setting for folder or permissions, and runs are listed under the app's scheduled tasks (archive them like any session).
+- Never create a routine in auto-permission mode without the user's explicit agreement. Keep routines read-and-report only; use the OS scheduler for anything that acts.
+
 ## UI mockups and end of subject
 - First mockup or major redesign of a screen: do it with the strongest model at high effort. A weaker model must not
   start it: it writes the brief in the state file and stops. If a mockup was made on a weaker model anyway, say so at
