@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Dashboard: Claude cost and failing tests per arm on ENH-004">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e1b4b"/></linearGradient>
+<linearGradient id="gi" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+<linearGradient id="ge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#059669"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>
+<rect width="1200" height="520" rx="16" fill="url(#bg)"/>
+<text x="30" y="46" font-size="24" font-weight="800" fill="#f8fafc">Results dashboard, ENH-004 (hard task)</text>
+<text x="30" y="72" font-size="14" fill="#94a3b8">Bars = Claude spend in dollars (lower is better). Pills = failing tests; green = at the pre-existing baseline (7).</text>
+<rect x="820" y="26" width="350" height="64" rx="12" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="2"/>
+<text x="995" y="58" font-size="26" font-weight="900" text-anchor="middle" fill="#6ee7b7">0.53 $ vs 2.01 $</text>
+<text x="995" y="80" font-size="13" text-anchor="middle" fill="#d1fae5">Claude cost divided by about 4</text>
+<text x="30" y="128" font-size="16" font-weight="800" fill="#f8fafc">A4</text>
+<text x="72" y="128" font-size="14" fill="#cbd5e1">Sonnet alone</text>
+<rect x="290" y="108" width="179.1" height="28" rx="6" fill="url(#gi)"><animate attributeName="width" from="0" to="179.1" dur="1.2s" begin="0.00s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="479.1" y="128" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.00s" fill="freeze"/>2.01 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.60s" fill="freeze"/>
+<rect x="1010" y="108" width="150" height="28" rx="14" fill="#ef4444" fill-opacity="0.22" stroke="#ef4444" stroke-width="2"/>
+<circle cx="1026" cy="122" r="6" fill="#ef4444"/>
+<text x="1040" y="127" font-size="14" font-weight="700" fill="#f8fafc">19 failing tests</text></g>
+<text x="30" y="172" font-size="16" font-weight="800" fill="#f8fafc">D7</text>
+<text x="72" y="172" font-size="14" fill="#cbd5e1">Sonnet + agents</text>
+<rect x="290" y="152" width="229.0" height="28" rx="6" fill="url(#gi)"><animate attributeName="width" from="0" to="229.0" dur="1.2s" begin="0.15s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="529.0" y="172" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.15s" fill="freeze"/>2.57 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.75s" fill="freeze"/>
+<rect x="1010" y="152" width="150" height="28" rx="14" fill="#f59e0b" fill-opacity="0.22" stroke="#f59e0b" stroke-width="2"/>
+<circle cx="1026" cy="166" r="6" fill="#f59e0b"/>
+<text x="1040" y="171" font-size="14" font-weight="700" fill="#f8fafc">14 failing tests</text></g>
+<text x="30" y="216" font-size="16" font-weight="800" fill="#f8fafc">F6</text>
+<text x="72" y="216" font-size="14" fill="#cbd5e1">Opus alone</text>
+<rect x="290" y="196" width="360.0" height="28" rx="6" fill="url(#gi)"><animate attributeName="width" from="0" to="360.0" dur="1.2s" begin="0.30s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="660.0" y="216" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.30s" fill="freeze"/>4.04 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.90s" fill="freeze"/>
+<rect x="1010" y="196" width="150" height="28" rx="14" fill="#ef4444" fill-opacity="0.22" stroke="#ef4444" stroke-width="2"/>
+<circle cx="1026" cy="210" r="6" fill="#ef4444"/>
+<text x="1040" y="215" font-size="14" font-weight="700" fill="#f8fafc">21 failing tests</text></g>
+<text x="30" y="260" font-size="16" font-weight="800" fill="#f8fafc">G6</text>
+<text x="72" y="260" font-size="14" fill="#cbd5e1">Opus + agents</text>
+<rect x="290" y="240" width="306.5" height="28" rx="6" fill="url(#gi)"><animate attributeName="width" from="0" to="306.5" dur="1.2s" begin="0.45s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="606.5" y="260" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.45s" fill="freeze"/>3.44 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.05s" fill="freeze"/>
+<rect x="1010" y="240" width="150" height="28" rx="14" fill="#f59e0b" fill-opacity="0.22" stroke="#f59e0b" stroke-width="2"/>
+<circle cx="1026" cy="254" r="6" fill="#f59e0b"/>
+<text x="1040" y="259" font-size="14" font-weight="700" fill="#f8fafc">9 failing tests</text></g>
+<text x="30" y="304" font-size="16" font-weight="800" fill="#f8fafc">E8</text>
+<text x="72" y="304" font-size="14" fill="#cbd5e1">Codex + 1 Claude check</text>
+<rect x="290" y="284" width="47.2" height="28" rx="6" fill="url(#ge)"><animate attributeName="width" from="0" to="47.2" dur="1.2s" begin="0.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="347.2" y="304" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.60s" fill="freeze"/>0.53 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.20s" fill="freeze"/>
+<rect x="1010" y="284" width="150" height="28" rx="14" fill="#10b981" fill-opacity="0.22" stroke="#10b981" stroke-width="2"/>
+<circle cx="1026" cy="298" r="6" fill="#10b981"/>
+<text x="1040" y="303" font-size="14" font-weight="700" fill="#f8fafc">7 failing tests</text></g>
+<text x="30" y="348" font-size="16" font-weight="800" fill="#f8fafc">E9</text>
+<text x="72" y="348" font-size="14" fill="#cbd5e1">E8 replay</text>
+<rect x="290" y="328" width="29.4" height="28" rx="6" fill="url(#ge)"><animate attributeName="width" from="0" to="29.4" dur="1.2s" begin="0.75s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="329.4" y="348" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.75s" fill="freeze"/>0.33 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.35s" fill="freeze"/>
+<rect x="1010" y="328" width="150" height="28" rx="14" fill="#10b981" fill-opacity="0.22" stroke="#10b981" stroke-width="2"/>
+<circle cx="1026" cy="342" r="6" fill="#10b981"/>
+<text x="1040" y="347" font-size="14" font-weight="700" fill="#f8fafc">7 failing tests</text></g>
+<text x="30" y="392" font-size="16" font-weight="800" fill="#f8fafc">B4</text>
+<text x="72" y="392" font-size="14" fill="#cbd5e1">Codex alone</text>
+<rect x="290" y="372" width="3.0" height="28" rx="6" fill="#64748b"><animate attributeName="width" from="0" to="3.0" dur="1.2s" begin="0.90s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="303.0" y="392" font-size="15" font-weight="800" fill="#f8fafc" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.90s" fill="freeze"/>0 $</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.50s" fill="freeze"/>
+<rect x="1010" y="372" width="150" height="28" rx="14" fill="#f59e0b" fill-opacity="0.22" stroke="#f59e0b" stroke-width="2"/>
+<circle cx="1026" cy="386" r="6" fill="#f59e0b"/>
+<text x="1040" y="391" font-size="14" font-weight="700" fill="#f8fafc">14 failing tests</text></g>
+<line x1="290" y1="94" x2="290" y2="408" stroke="#475569"/>
+<rect x="30" y="430" width="1140" height="34" rx="10" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-dasharray="6 5"/>
+<text x="600" y="452" font-size="15" font-weight="800" text-anchor="middle" fill="#6ee7b7">base = 7 failing tests before any change (the pre-existing baseline)</text>
+<circle cx="40" cy="484" r="6" fill="#10b981"/><text x="52" y="489" font-size="13" fill="#cbd5e1">at baseline (7)</text>
+<circle cx="170" cy="484" r="6" fill="#f59e0b"/><text x="182" y="489" font-size="13" fill="#cbd5e1">above baseline</text>
+<circle cx="300" cy="484" r="6" fill="#ef4444"/><text x="312" y="489" font-size="13" fill="#cbd5e1">19 or more</text>
+<text x="30" y="514" font-size="12" fill="#94a3b8">n = 1 per arm except E8/E9 (n = 2). B4 costs 0 $ of Claude but has no verification step and is unreliable alone. 7 existing tests contradicted the plan on purpose.</text>
+</svg>

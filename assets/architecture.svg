@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="580" viewBox="0 0 1200 580" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Claude main thread delegates to lecteur, testeur, executant, architecte, and optionally Codex followed by one Claude verification">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e1b4b"/></linearGradient>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#cbd5e1"/></marker></defs>
+<rect width="1200" height="580" rx="16" fill="url(#bg)"/>
+<text x="30" y="44" font-size="24" font-weight="800" fill="#f8fafc">Who does what</text>
+<text x="30" y="68" font-size="14" fill="#94a3b8">The main thread designs, decides and verifies. Everything else goes to the lightest agent that can do it.</text>
+<rect x="500" y="92" width="200" height="50" rx="14" fill="#38bdf8" fill-opacity="0.18" stroke="#38bdf8" stroke-width="2"/>
+<text x="600.0" y="122" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">User</text>
+<rect x="400" y="190" width="400" height="82" rx="14" fill="#818cf8" fill-opacity="0.18" stroke="#818cf8" stroke-width="2"/>
+<text x="600.0" y="220" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">Claude main thread</text>
+<text x="600.0" y="242" font-size="13" text-anchor="middle" fill="#cbd5e1">Sonnet, effort medium</text>
+<text x="600.0" y="260" font-size="13" text-anchor="middle" fill="#94a3b8">designs, decides, verifies</text>
+<path d="M600 142V188" fill="none" stroke="#cbd5e1" stroke-width="2" marker-end="url(#a)"/>
+<path d="M600 272V310H136V348" fill="none" stroke="#cbd5e1" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="350" width="212" height="110" rx="14" fill="#34d399" fill-opacity="0.18" stroke="#34d399" stroke-width="2"/>
+<text x="136.0" y="380" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">lecteur / chercheur</text>
+<text x="136.0" y="402" font-size="13" text-anchor="middle" fill="#cbd5e1">Haiku / Sonnet</text>
+<text x="136.0" y="420" font-size="13" text-anchor="middle" fill="#94a3b8">read 3+ files,</text>
+<text x="136.0" y="438" font-size="13" text-anchor="middle" fill="#94a3b8">web search</text>
+<path d="M600 272V310H368V348" fill="none" stroke="#cbd5e1" stroke-width="2" marker-end="url(#a)"/>
+<rect x="262" y="350" width="212" height="110" rx="14" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="2"/>
+<text x="368.0" y="380" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">testeur</text>
+<text x="368.0" y="402" font-size="13" text-anchor="middle" fill="#cbd5e1">Haiku</text>
+<text x="368.0" y="420" font-size="13" text-anchor="middle" fill="#94a3b8">run tests,</text>
+<text x="368.0" y="438" font-size="13" text-anchor="middle" fill="#94a3b8">long output</text>
+<path d="M600 272V310H600V348" fill="none" stroke="#cbd5e1" stroke-width="2" marker-end="url(#a)"/>
+<rect x="494" y="350" width="212" height="110" rx="14" fill="#fb923c" fill-opacity="0.18" stroke="#fb923c" stroke-width="2"/>
+<text x="600.0" y="380" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">executant</text>
+<text x="600.0" y="402" font-size="13" text-anchor="middle" fill="#cbd5e1">Sonnet</text>
+<text x="600.0" y="420" font-size="13" text-anchor="middle" fill="#94a3b8">write designed</text>
+<text x="600.0" y="438" font-size="13" text-anchor="middle" fill="#94a3b8">code over ~30 lines</text>
+<path d="M600 272V310H832V348" fill="none" stroke="#cbd5e1" stroke-width="2" marker-end="url(#a)"/>
+<rect x="726" y="350" width="212" height="124" rx="14" fill="#f472b6" fill-opacity="0.18" stroke="#f472b6" stroke-width="2"/>
+<text x="832.0" y="380" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">architecte</text>
+<text x="832.0" y="402" font-size="13" text-anchor="middle" fill="#cbd5e1">Opus, medium</text>
+<text x="832.0" y="420" font-size="13" text-anchor="middle" fill="#94a3b8">triggers only: red test</text>
+<text x="832.0" y="438" font-size="13" text-anchor="middle" fill="#94a3b8">after 2 fixes, contradiction,</text>
+<text x="832.0" y="456" font-size="13" text-anchor="middle" fill="#94a3b8">deep bug</text>
+<path d="M600 272V310H1064V348" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<rect x="958" y="350" width="212" height="110" rx="14" fill="#2dd4bf" fill-opacity="0.18" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="1064.0" y="380" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">cx.sh executant</text>
+<text x="1064.0" y="402" font-size="13" text-anchor="middle" fill="#cbd5e1">Codex, optional</text>
+<text x="1064.0" y="420" font-size="13" text-anchor="middle" fill="#94a3b8">implements ONCE</text>
+<text x="1064.0" y="438" font-size="13" text-anchor="middle" fill="#94a3b8">3 calls max in parallel</text>
+<rect x="958" y="500" width="212" height="64" rx="14" fill="#818cf8" fill-opacity="0.18" stroke="#818cf8" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="1064.0" y="530" font-size="17" font-weight="800" text-anchor="middle" fill="#f8fafc">ONE Claude verification</text>
+<text x="1064.0" y="552" font-size="13" text-anchor="middle" fill="#94a3b8">no agents, no back-and-forth</text>
+<path d="M1064 460V498" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<path d="M1170 532H1186V231H802" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<text x="1000" y="220" font-size="13" text-anchor="middle" fill="#94a3b8">verified result returns to the main thread</text>
+</svg>

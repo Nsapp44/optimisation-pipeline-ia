@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.55" stop-color="#1e1b4b"/><stop offset="1" stop-color="#0f3d3a"/></linearGradient>
+<linearGradient id="t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a5b4fc"/><stop offset="1" stop-color="#6ee7b7"/></linearGradient>
+</defs>
+<rect width="1280" height="320" rx="18" fill="url(#g)"/>
+<circle cx="1120" cy="60" r="170" fill="#6366f1" fill-opacity="0.12"/>
+<circle cx="1210" cy="290" r="130" fill="#10b981" fill-opacity="0.12"/>
+<text x="640" y="150" font-size="68" font-weight="800" text-anchor="middle" fill="url(#t)">Optimisation Pipeline IA</text>
+<text x="640" y="210" font-size="30" text-anchor="middle" fill="#e2e8f0">Claude Code × Codex — measured</text>
+<text x="640" y="262" font-size="18" text-anchor="middle" fill="#94a3b8">Claude cost ÷ 4 at equal test quality · with or without OpenAI</text>
+</svg>
