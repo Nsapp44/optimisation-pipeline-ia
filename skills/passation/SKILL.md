@@ -55,5 +55,5 @@ Aucun pop-up pour la passation. Modèle choisi selon le travail à venir, sans d
 ## Rappels
 - S'il s'absente : ne rien demander, ne rien supprimer ; SUIVI.md propre suffit.
 - Une passation ne dépend jamais de la suppression précédente : si une nouvelle est nécessaire alors que la carte précédente n est pas cliquée, la nouvelle reprend les ids en attente dans son brief (chaîne) et demande une seule suppression groupée.
-- Ligne de registre à ajouter dans `C:\bo-test\docs\registre-config.md` à chaque modification de ce skill.
+- Ligne de registre à ajouter dans votre registre de configuration à chaque modification de ce skill.
 - Le brief de la nouvelle conversation rappelle la règle advisor du CLAUDE.md global : appel obligatoire avant de figer l'approche et avant « fini » sur un gros chantier (l'outil est dans la session si `advisorModel` est réglé).
