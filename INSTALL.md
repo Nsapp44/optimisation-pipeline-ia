@@ -54,7 +54,6 @@ For every file in `REPO/agents/*.md`, `REPO/skills/*/` (compare each file inside
 - IDENTICAL: exists with the same content (compare bytes; ignore CRLF vs LF differences only if you say so).
 - CONFLICT: same name, different content.
 
-Also note: `REPO/skills/motion-tiktok/SKILL.md` has no YAML frontmatter (no `name:`/`description:` block), so Claude Code will probably not load it as a skill. Tell the user and ask whether to copy it anyway (default: skip it).
 
 Give the user a short summary (counts and the list of conflicts) before copying anything.
 

@@ -1,6 +1,6 @@
 ---
 name: motion-tiktok
-description: Règles pour les vidéos courtes en motion design (TikTok / Shorts) : bruitages discrets sous la voix, rythme, cohérence. À consulter avant de monter une vidéo courte.
+description: Règles de bruitages discrets sous la voix pour les vidéos courtes en motion design (histoire, idéation). À consulter avant de monter une vidéo courte.
 ---
 
 
