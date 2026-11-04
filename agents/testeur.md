@@ -5,7 +5,6 @@ tools: Read, Grep, Glob, Bash, PowerShell
 model: haiku
 skills:
   - verif-responsive-web
-  - captures-qt
   - verif-pixel
 ---
 

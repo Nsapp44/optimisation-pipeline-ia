@@ -7,6 +7,8 @@ skills:
   - engineering:architecture
   - engineering:system-design
   - engineering:tech-debt
+  - blender-anim-web
+  - rendu-360-maquettes
 effort: medium
 ---
 

@@ -1,4 +1,4 @@
-# Consignes générales de Nolann (toutes les sessions Claude Code)
+# Consignes générales de l'utilisateur (toutes les sessions Claude Code)
 
 ## Économie de tokens et modes d'effort
 
@@ -23,7 +23,7 @@
     corrections ; 2) une liste de « doutes sérieux » ou « non vérifié » → confier le plus important à `architecte`
     avant de rendre le rapport ; 3) des fichiers « non lus » dont dépend la conclusion → les lire avant de conclure,
     ou le dire en tête du rapport ; 4) aucun progrès sur 2 points d'étape, ou la même trace d'erreur qui revient ;
-    5) contradiction test/doc, module difficile à concevoir ; 6) **design/visuel sans base** (SVG, README, écran) ou **plus de 2 allers-retours avec Nolann sur le même rendu** → `architecte` conçoit et vérifie par captures, pas de retouches Sonnet en boucle. **Son plan ne doit exiger que des commandes que la session
+    5) contradiction test/doc, module difficile à concevoir ; 6) **design/visuel sans base** (SVG, README, écran) ou **plus de 2 allers-retours avec l'utilisateur sur le même rendu** → `architecte` conçoit et vérifie par captures, pas de retouches Sonnet en boucle. **Son plan ne doit exiger que des commandes que la session
     peut lancer (pytest…), avec un repli ; si une commande est refusée, Sonnet s'adapte, il ne s'arrête pas** (bancs
     T9 16/10 : sinon 0/5). Sans déclencheur, Sonnet seul (C coûte 1,6× A sans gain mesuré).
   - **Si je suis absent** : Sonnet ne reste pas bloqué ; il appelle `architecte` (medium) sur le point précis, puis
@@ -71,7 +71,7 @@
   - **Recherche web** → toujours `chercheur`, jamais en direct.
   - **Le fil principal relit la diff / l'extrait clé** de ce qu'un agent a écrit avant de dire « fait » (jamais
     d'aveugle) et l'écrit dans le rapport. Écrire soi-même un gros bloc qu'un agent aurait pu faire = faute.
-  - Dire à Nolann, en une ligne à chaque lancement, quel agent et pour quoi (« lecteur : lit X »).
+  - Dire à l'utilisateur, en une ligne à chaque lancement, quel agent et pour quoi (« lecteur : lit X »).
 - **Navigateur (captures, pages longues) dans un agent** dès plus de 2-3 captures.
 - **Un agent n'attend jamais plus de 5 min** (son cache dure 5 min) : il lance la commande longue en arrière-plan,
   rend la main avec ce qu'il a lancé et où lire le résultat ; un nouvel agent l'analyse. La durée n'est pas un critère
@@ -90,10 +90,10 @@
   (`schtasks` / `Register-ScheduledTask`, script `.ps1` plutôt que commande inline), car les routines de l'appli
   bloquent sur les autorisations. **Exception (décidée 17/10/2026) : les rendez-vous réguliers de veille ou de point
   (mensuel, hebdo : point mensuel pipeline) = routine Claude**, visible dans « Scheduled » ; lecture et
-  rapport seulement, aucune action risquée. Pas de skip des permissions ; dire à Nolann ce que la tâche lance.
+  rapport seulement, aucune action risquée. Pas de skip des permissions ; dire à l'utilisateur ce que la tâche lance.
   **Routine Claude (vérifié 20/10)** : chaque run = une vraie session locale, dans le dossier du projet où la routine a été créée
   (le créer depuis la conversation du projet concerné), listée dans « Tâches planifiées », archivable ; pas de réglage de dossier ni
-  d'autorisations dans l'outil ; jamais créée en mode Auto sans l'accord de Nolann.
+  d'autorisations dans l'outil ; jamais créée en mode Auto sans l'accord de l'utilisateur.
 - **Pas d'agent de surveillance** : attendre les notifications de fin, ne jamais faire tourner un agent ou une boucle
   qui vérifie « c'est fini ? ». Point d'avancement = une commande courte quand on me le demande ; longue attente
   (plusieurs heures) = script ou tâche planifiée Windows, sans tokens. **Pas de Monitor qui notifie à chaque ligne de
@@ -102,9 +102,9 @@
 
 ## Contexte court (les « cache reads »)
 
-- **File des demandes (24/10/2026)** : Nolann parle beaucoup et enchaîne les demandes ; sans plan écrit, des tâches se perdent. **Chaque nouvelle demande s'ajoute à la section « File des demandes » de `SUIVI.md`** (liste numérotée, cochée) AVANT d'être traitée ; je finis la tâche en cours, je coche, je redis la file restante en une ligne, puis la suivante. Jamais lâcher une tâche pour la dernière phrase reçue ; si la file dépasse ~6 points ou se mélange, **je m'arrête, je la restructure (regrouper, ordonner, dire ce qui est fait/en cours/à faire) et je la montre**. Nouvelle demande qui change le plan = je refais le plan, pas de coupe silencieuse. Une demande abandonnée volontairement est écrite comme telle, avec la raison. **Gros chantier ou rafale de messages : j'utilise le mode plan (EnterPlanMode) au départ et à chaque ajout important, comme avant.**
+- **File des demandes (24/10/2026)** : l'utilisateur parle beaucoup et enchaîne les demandes ; sans plan écrit, des tâches se perdent. **Chaque nouvelle demande s'ajoute à la section « File des demandes » de `SUIVI.md`** (liste numérotée, cochée) AVANT d'être traitée ; je finis la tâche en cours, je coche, je redis la file restante en une ligne, puis la suivante. Jamais lâcher une tâche pour la dernière phrase reçue ; si la file dépasse ~6 points ou se mélange, **je m'arrête, je la restructure (regrouper, ordonner, dire ce qui est fait/en cours/à faire) et je la montre**. Nouvelle demande qui change le plan = je refais le plan, pas de coupe silencieuse. Une demande abandonnée volontairement est écrite comme telle, avec la raison. **Gros chantier ou rafale de messages : j'utilise le mode plan (EnterPlanMode) au départ et à chaque ajout important, comme avant.**
 
-- **Doute = pop-up (24/10/2026)** : Nolann ne lit pas toujours le texte. Dès qu'une demande est floue, ambiguë ou qu'un choix lui appartient, j'utilise l'outil `AskUserQuestion` (pop-up, 2-4 options, ma recommandation en premier), jamais une question noyée dans le texte. Pendant qu'elle attend, je continue le reste de la file.
+- **Doute = pop-up (24/10/2026)** : l'utilisateur ne lit pas toujours le texte. Dès qu'une demande est floue, ambiguë ou qu'un choix lui appartient, j'utilise l'outil `AskUserQuestion` (pop-up, 2-4 options, ma recommandation en premier), jamais une question noyée dans le texte. Pendant qu'elle attend, je continue le reste de la file.
 - Chaque message relit **toute** la conversation. Compaction automatique à **160 000 tokens** (27/10/2026 ; 130 000 bouclait, le contexte repart à ~110 k après compaction ; hook `boucle_compact.py` détecte 2 compactions en < 15 min : **Claude fait alors la passation seul (skill `passation`, mode autonome), sans demander** ; hook PreCompact à 10 s) (`autoCompactWindow`
   dans `~/.claude/settings.json`). Me proposer `/clear` ou une nouvelle session (avec note de passation) quand on
   change de sujet ; ultracode seulement le temps du chantier. **Fin de sujet (17/10/2026)** : dès qu'un sujet est
@@ -124,7 +124,7 @@
 - **`SUIVI.md` = ÉTAT COURANT seulement** (viser ≤ ~5 Ko, jamais d'accumulation ; **lu UNE fois** au démarrage, après compaction ou grosse pause, jamais
   entre deux messages ; hook `hooks/suivi_taille.py` alerte > 8 Ko, une fois par conversation) : décisions en vigueur, état actuel, **« Ce qui n'a pas marché et pourquoi »**, **« Prochain
   pas exact »** (section vide = « rien pour l'instant », on ne la supprime pas). **RÉÉCRIT (pas complété)** à chaque
-  étape ou décision, sans que je le demande. **Règle dure : AVANT chaque compte rendu à Nolann et à la fin de chaque
+  étape ou décision, sans que je le demande. **Règle dure : AVANT chaque compte rendu à l'utilisateur et à la fin de chaque
   étape terminée, SUIVI.md est réécrit propre (état, prochain pas exact) ; jamais de réponse avant.** Le hook de pause
   1 h bloque le message de reprise : s'il n'est pas propre à ce moment-là, on perd le fil (vécu 12/10). **Un SUIVI par chantier**, chargé seulement par la session de ce chantier. **Zéro perte à l'allègement (test : 1 info introuvable sur 10)** : on DÉPLACE sans réécrire (copie `.bak` avant, l'archive garde le texte d'origine) ; le SUIVI court garde les valeurs exactes, les listes ordonnées et un **index des archives** (sujet → fichier, section) ; contrôle avant de conclure : 10 questions tirées de l'ancien SUIVI, toutes retrouvables dans court + archives. Ce qui est fini et son détail vont dans `docs/` (archives, journal, spec)
   avec un renvoi d'une ligne. Même règle dans chaque projet, avec la règle de docs techniques du projet. Après
@@ -156,7 +156,7 @@
   et ce qu'on reprend.
 - **Proportionné** : petite modif → un coup d'œil au code concerné, sans agent ni recherche web ; nouvelle fonction →
   recherche ciblée (un agent Sonnet au plus) ; gros chantier ou sujet inconnu → vraie recherche (web, GitHub, git).
-- **Rappel de Nolann (24/10/2026) : cet état des lieux se perdait.** Toute question ou demande qui crée du NOUVEAU (outil, fonction, méthode, skill, vidéo, mise en page, « est-ce que ça existe ? ») démarre par : 1) `git log`/`grep` du dépôt et des projets voisins ; 2) **`chercheur` (15 recherches mini, GitHub et alternatives)**, lancé en parallèle du reste. **La 1re ligne de ma réponse dit le résultat** : « État des lieux : trouvé X (licence Y), on reprend / rien de probant après N recherches ». Pas de ligne = je l'ai sautée = faute. Seules vraies exceptions : correction d'une ligne, question pure d'explication, suite directe d'un état des lieux déjà fait dans la conversation.
+- **Rappel de l'utilisateur (24/10/2026) : cet état des lieux se perdait.** Toute question ou demande qui crée du NOUVEAU (outil, fonction, méthode, skill, vidéo, mise en page, « est-ce que ça existe ? ») démarre par : 1) `git log`/`grep` du dépôt et des projets voisins ; 2) **`chercheur` (15 recherches mini, GitHub et alternatives)**, lancé en parallèle du reste. **La 1re ligne de ma réponse dit le résultat** : « État des lieux : trouvé X (licence Y), on reprend / rien de probant après N recherches ». Pas de ligne = je l'ai sautée = faute. Seules vraies exceptions : correction d'une ligne, question pure d'explication, suite directe d'un état des lieux déjà fait dans la conversation.
 
 ## Applis avec une interface : maquette d'abord, points visuels ensuite
 
@@ -174,7 +174,7 @@
 - **Le code doit RESSEMBLER à la maquette validée — règle dure.** Dimensions, espacements, couleurs, textes, ordre,
   états : comme la maquette, pas « dans l'esprit ». **Interdit** de simplifier, remplacer ou laisser tomber un élément
   parce que c'est plus long ou délicat, sans le dire. Une maquette validée est faisable : difficulté technique → **1)
-  `architecte` ; 2) poser la question à Nolann** (il préfère changer la maquette que subir un contournement
+  `architecte` ; 2) poser la question à l'utilisateur** (il préfère changer la maquette que subir un contournement
   silencieux). Tout écart est une **décision à lui**, jamais un choix de Sonnet. Avant « fini » sur un écran :
   **capture côte à côte avec la maquette** et liste des écarts (même vide) dans le rapport / SUIVI.md.
 - **Points maquette réguliers** : après un lot de gros changements front + back, ou quand la dernière passe date,
@@ -197,7 +197,7 @@ Concevoir avant de modéliser (schéma 2D coté → prompts d'images → relectu
 
 ## Pas de Codex / OpenAI (retiré le 22/10/2026)
 
-- Abonnement OpenAI arrêté, Nolann est passé à Claude Max : **aucun appel à cx.sh / codex**. Tout se fait avec Claude (Sonnet + agents, `architecte` aux déclencheurs, Opus ultracode pour le visuel). Skills codex-gpt, prompts-chatgpt-images laissés installés mais inutilisés (le second sert seulement à écrire des prompts que Nolann colle lui-même dans ChatGPT).
+- Abonnement OpenAI arrêté, l'utilisateur est passé à Claude Max : **aucun appel à cx.sh / codex**. Tout se fait avec Claude (Sonnet + agents, `architecte` aux déclencheurs, Opus ultracode pour le visuel). Skills codex-gpt, prompts-chatgpt-images laissés installés mais inutilisés (le second sert seulement à écrire des prompts que l'utilisateur colle lui-même dans ChatGPT).
 - Échelle d'un bug qui résiste : Sonnet medium (2 essais) → `architecte`.
 - Ancienne pipeline Claude + Codex : tag git avec-codex-2026-10-22 (dépôt ~/.claude) et C:\pipeline.
 
@@ -208,3 +208,10 @@ Concevoir avant de modéliser (schéma 2D coté → prompts d'images → relectu
   relecture : `design:design-critique`, `design:accessibility-review`).
 - Un travail qui se répète ou suit une méthode à nous : **proposer de créer un skill**.
 - **Créer/modifier un skill, agent, hook ou règle** : ajouter une ligne (pourquoi, date, mesure) à `docs/registre-config.md`, jamais le pourquoi dans le skill ou ce fichier (coût à chaque message). Le point mensuel relit ce registre ; « mis à jour sur un autre compte » : lancer `outils/inventaire.ps1 -Extra <dossier>`.
+
+## Travail autonome (04/11/2026)
+
+- Modèle/effort choisis seuls selon le chantier : Sonnet medium par défaut ; Sonnet + `architecte` pour un point dur ; Opus seulement pour une première maquette ou une architecture lourde. Jamais « high » sans accord.
+- Une session bloquée ou devant un choix de design ne s'arrête PAS : elle note la question dans « Questions en attente » de `SUIVI.md`, prend l'option la plus sûre et réversible, continue, et pose ses questions à l'utilisateur à son retour.
+- Maquette validée = la session enchaîne sur le code seule ; changement MAJEUR de maquette = nouvelle session Opus, puis retour à Sonnet.
+- **Une seule conversation active par chantier** : la suivante n'est créée qu'après que la précédente a écrit `SUIVI.md` et dit « fini, supprimable » ; une conversation ne délègue pas à une autre conversation.

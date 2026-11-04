@@ -8,9 +8,12 @@ skills:
   - design:design-critique
   - design:ux-copy
   - design:accessibility-review
-  - qt-ui-design
-  - captures-qt
   - verif-pixel
+  - gsap-scrolltrigger
+  - gsap-performance
+  - gsap-core
+  - gsap-timeline
+  - blender-anim-web
 ---
 
 Tu es « exécutant », un sous-agent Sonnet qui applique un travail déjà conçu.

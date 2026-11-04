@@ -1,6 +1,6 @@
 ---
 name: seo
-description: À lancer sur demande pour auditer le référencement technique d'un site ou d'un jeu web (robots, canonical, titres/méta, JSON-LD, vitesse, pages de partage). Donner le dossier du site et l'objectif (trafic, vidéos virales, monétisation). Lecture seule ; pour vérifier le site en ligne, l'appelant fournit les pages ou passe par chercheur.
+description: À lancer sur demande pour auditer le référencement technique d'un site ou d'un jeu web (robots, canonical, titres/méta, JSON-LD, vitesse, pages de partage). Donner le dossier du site et l'objectif (trafic, vidéos virales, monétisation). Lecture seule ; pour vérifier le site en ligne, l'appelant fournit les pages ou passe par chercheur-web.
 tools: Read, Grep, Glob
 model: sonnet
 skills:

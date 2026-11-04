@@ -1,61 +1,155 @@
 <div align="center">
 
-<img src="assets/hero.svg" alt="Optimisation Pipeline IA - Claude x Codex, Claude cost divided by 4" width="100%">
+<img src="assets/hero.svg" alt="Optimisation Pipeline IA - a measured Claude Code setup" width="100%">
 
 # Optimisation Pipeline IA
 
-**A measured Claude Code sub-agent pipeline, with an optional Codex (OpenAI) implementer: what helped, what did not, and the numbers.**
+**A Claude Code setup that delegates, saves tokens, and runs its own sessions — measured, not promised.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![works with: Claude Code](https://img.shields.io/badge/works%20with-Claude%20Code-6366f1)
-![optional: Codex](https://img.shields.io/badge/optional-Codex-10a37f)
+![agents: 9](https://img.shields.io/badge/agents-9-0ea5e9)
+![hooks: 6](https://img.shields.io/badge/hooks-6-ef4444)
 ![tests: measured](https://img.shields.io/badge/tests-measured-f59e0b)
 
-[In 30 seconds](#in-30-seconds) ·
+[Install](#install-in-30-seconds) ·
+[What you get](#what-you-get) ·
+[Autonomy](#autonomy) ·
+[Token economy](#token-economy) ·
+[Motion & creative](#motion--creative) ·
+[Agents / Skills / Hooks](#agents--skills--hooks) ·
 [Key results](#key-results) ·
-[Architecture](#architecture) ·
-[Quick start](#quick-start) ·
-[Methodology](#methodology) ·
-[Limitations](#honest-limitations) ·
-[Structure](#repository-structure)
+[Limitations](#honest-limitations)
 
 </div>
 
-> **Default pipeline = Codex implements + ONE Claude verification. Without OpenAI = Sonnet alone + `architecte` at the triggers.**
+## Install in 30 seconds
 
-## In 30 seconds
+```bash
+git clone https://github.com/Nsapp44/optimisation-pipeline-ia
+cd optimisation-pipeline-ia
+claude
+# then paste:  Read INSTALL.md and do it.
+```
 
-<table>
-<tr>
-<td width="33%" valign="top">
+Claude diagnoses your setup, compares it with your existing `~/.claude`, makes a backup, copies the agents, skills and hooks, registers the hooks in `settings.json` itself (no JSON to paste by hand), checks the result, and tells you to restart. Full procedure, with a manual fallback: [`INSTALL.md`](INSTALL.md).
 
-### Cost / 4
+> Honest note: the procedure is written for Claude Code to execute. Try it on a throwaway profile first.
 
-Codex implements, Claude verifies once: **0.53 $ vs 2.01 $** of Claude spend for Sonnet alone on a hard task (ENH-004). Replayed: **0.33 $**.
+## What you get
 
-</td>
-<td width="33%" valign="top">
+Every line below is backed by a file in this repo.
 
-### Equal quality
+| Without this setup | With it | Source |
+|---|---|---|
+| One model does everything, reads whole files | Reading, writing and testing go to cheap sub-agents; the main thread designs and verifies | [`AGENTS.md`](AGENTS.md) |
+| `general-purpose` agents for everything | `lecteur` / `chercheur-web` / `executant` / `testeur`: a generic agent measured **5x** more expensive than `lecteur` / `chercheur` | [`results/mesures.md`](results/mesures.md) |
+| Whole 4,000-line file read, then re-read every turn | Grep + line ranges: **233 k vs 625 k** tokens, **4.4x** less in equivalent cost | [`results/mesures.md`](results/mesures.md) |
+| Opus for everything | Sonnet by default: **~45-50 % cheaper** at the same test score on two tasks | [`results/config-stable.md`](results/config-stable.md) |
+| Hard task, Sonnet alone | Codex implements + one Claude verification: **0.53 $ vs 2.01 $** Claude spend, failing tests back at the baseline (7) | [`results/mesures_grandeur_nature_2026-10-16.md`](results/mesures_grandeur_nature_2026-10-16.md) |
+| Long pause, then a message that rebuilds the whole cache | A hook blocks the first message after more than 1 h when the context is above 80 k tokens | [`hooks/pause_longue.py`](hooks/pause_longue.py) |
+| Endless compaction loops | A hook detects 2 compactions in under 15 min and triggers a clean handover to a fresh session | [`hooks/boucle_compact.py`](hooks/boucle_compact.py) |
+| `.env` overwritten, `rm -r` run blind | A `PreToolUse` hook refuses `.env` writes and asks before recursive deletes | [`hooks/protege_fichiers.py`](hooks/protege_fichiers.py) |
 
-Failing tests at the **pre-existing baseline (7)** for both Codex + verification runs (E8, E9). On bounded benches T8-T10 every arm scores the same.
+## Autonomy
 
-</td>
-<td width="33%" valign="top">
+The setup is built so a session keeps working without you at the keyboard.
 
-### With or without OpenAI
+- **Sessions that create their own sessions.** The `passation` skill (handover) checks that `SUIVI.md` is clean, **commits locally first** so nothing is lost, opens a fresh session with the brief "read `SUIVI.md` and continue at the exact next step", then offers to delete the old one. It needs the desktop app's session tools; an autonomous mode runs without a pop-up when the compaction-loop hook fires. See [`skills/passation/SKILL.md`](skills/passation/SKILL.md).
+- **Request queue.** Each new request is added to a numbered "File des demandes" in `SUIVI.md` before being handled, so a burst of messages does not lose tasks.
+- **`SUIVI.md` = current state only.** Rewritten (not appended) at every step: decisions in force, what did not work, exact next step. A hook warns above 8,000 bytes ([`hooks/suivi_taille.py`](hooks/suivi_taille.py)).
+- **Autonomous work.** A blocked session does not wait: it notes the question in "Questions en attente" of `SUIVI.md`, takes the safest reversible option, carries on, and asks everything in one pop-up when you come back.
+- **One active conversation per project folder.** The next one starts only after the previous one wrote `SUIVI.md` and made its local commit.
+- **Guard rails.** Hooks cap the size of `SUIVI.md` and project `CLAUDE.md`, block the first message after a costly pause, and protect `.env` files and recursive deletes. Push stays on your explicit order.
 
-Codex is a plus, never a dependency. Without it: Sonnet alone, `architecte` (Opus) only at defined triggers.
+Rules in full: [`claude/CLAUDE.md`](claude/CLAUDE.md).
 
-</td>
-</tr>
-</table>
+## Token economy
 
-- **Sonnet alone is the right default.** Adding Claude sub-agents costs about **1.85x** Sonnet alone on T10 with no quality gain.
-- **Sub-agents pay off only on large, read-heavy work**, and Opus (`architecte`) only at well-defined triggers (a test still red after 2 fixes, a contradiction, a deep bug).
-- **Codex alone is not reliable** (state pollution, sometimes writes nothing). The good result needs the verification step.
-- **The one clear quality gain from Codex**: a hard multi-file investigation, scored 5/5 vs 3/5 for Claude alone (n = 1 per arm).
-- A "3x productivity" claim is **not** proven here. What is proven: Claude cost divided by about 4 at comparable test quality on one task.
+Numbers come from the raw logs in [`results/`](results/) and [`docs/global/`](docs/global/). Calibration used: Pro plan, Opus-equivalent tokens; weights input 1, cache created 2, cache read 0.1, output 5, Sonnet 0.6, Haiku 0.2.
+
+| Lever | Measured | Source |
+|---|---|---|
+| Sonnet instead of Opus (medium effort) | Same score (26/26 expression evaluator, 33/33 CSV reader); ~45-50 % cheaper (27-56 k vs 56-101 k on the first task) | [`config-stable.md`](results/config-stable.md) |
+| Medium instead of high effort | Same result (26/26), about 50 % less reasoning; high is ~1.6x more expensive | [`config-stable.md`](results/config-stable.md), [`agents_delegation.md`](docs/global/agents_delegation.md) |
+| An agent is not free | A new agent recreates ~20-30 k of cache at start-up; worth it only if it saves the main thread more than ~30 k | [`agents_delegation.md`](docs/global/agents_delegation.md) |
+| Plugins and MCP servers | Fixed base of ~78 k tokens re-read at every message (tools ~39 k, MCP ~21 k, CLAUDE.md ~8 k, measured 11/10); unused plugins cost ~5 k per session | [`contexte_cache.md`](docs/global/contexte_cache.md), [`mesures.md`](results/mesures.md) |
+| Short `CLAUDE.md` | Re-read every message; hook warns above 15,000 bytes for a project file | [`hooks/claude_md_taille.py`](hooks/claude_md_taille.py) |
+| Compaction at 160,000 tokens | 130,000 looped (context restarts at ~110 k after compaction) | [`contexte_cache.md`](docs/global/contexte_cache.md) |
+| Pause guard | Cache of the main thread lasts 1 h; 23 % of it was lost to pauses over 14 days on the author's machine | [`config-stable.md`](results/config-stable.md) |
+| Agent never waits more than 5 min | Agent cache lasts 5 min; 22 % of agent cache (about 1.1 M) lost on one Qt project before the rule | [`config-stable.md`](results/config-stable.md) |
+| Cut command output | A 10 KB Bash output adds ~30 % to the turn; output capped at 15,000 characters | [`mesures.md`](results/mesures.md), [`config-stable.md`](results/config-stable.md) |
+| Targeted delegation | Haiku for mechanical reading and test runs, Sonnet for code already designed, Opus (`architecte`) only at defined triggers | [`AGENTS.md`](AGENTS.md) |
+
+The 1 h agent-cache setting was tested and **not** adopted: it would have cost +2.6 M to save 1.1 M.
+
+## Motion & creative
+
+What the setup knows how to do, through its skills:
+
+- **Scroll-driven product animation** from a rough Blender draft: scripted `bpy` model, image sequence plus pixel coordinates, then GSAP ScrollTrigger with canvas and HTML/SVG layers pinned by homography. Skill `blender-anim-web`.
+- **Short-form video motion** (Shorts / TikTok style): skill `motion-tiktok`. The copy in this repo contains only its sound-design rules.
+- **Pixel-level check** of a delivered screen against the approved mockup, text report only: `verif-pixel`.
+- **Responsive check** at 375 / 768 / 1440 px before saying "done": `verif-responsive-web`.
+- **Design guidelines** review: `web-design-guidelines`.
+
+The production videos are **not** in this repository. In day-to-day use the setup produced a website, small web games and dozens of short videos.
+
+## Agents / Skills / Hooks
+
+Agents, skills and hooks are written in French; Claude reads them fine.
+
+### Agents (`agents/`)
+
+| Name | Role | Model |
+|---|---|---|
+| `lecteur` | Read-only: 3+ files or ~300 lines, folder exploration | Haiku |
+| `testeur` | Runs tests, lint, builds, captures; reports; never edits | Haiku |
+| `chercheur-web` | All web research (WebSearch / WebFetch) | Sonnet |
+| `executant` | Writes code already designed, minimal diff | Sonnet |
+| `executant-ui` | Writes web / Qt interface code, design skills preloaded | Sonnet |
+| `chasseur-erreurs` | On request: hunts silent errors, read-only | Sonnet |
+| `securite-web` | On request: secrets, XSS, CSP review before release, read-only | Sonnet |
+| `seo` | On request: technical SEO audit, read-only | Sonnet |
+| `architecte` | The only Opus agent: stuck test, workaround temptation, contradictions | Opus |
+
+### Skills (`skills/`)
+
+| Name | Role | Model |
+|---|---|---|
+| `passation` | Clean handover to a fresh session (commit, brief, cleanup) | session model |
+| `menage-claude-md` | Shrink a project `CLAUDE.md` under ~15 KB without loss | session model |
+| `blender-anim-web` | Blender draft to scroll animation (GSAP ScrollTrigger) | session model |
+| `motion-tiktok` | Short-form motion rules (sound design in this copy) | session model |
+| `verif-pixel` | Pixel diff of a capture against a mockup | session model |
+| `verif-responsive-web` | Responsive check at three widths | session model |
+| `web-design-guidelines` | Web interface guidelines review (author field: vercel) | session model |
+
+### Hooks (`hooks/`)
+
+| Name | Event | Role |
+|---|---|---|
+| `pause_longue.py` | UserPromptSubmit | Blocks the first message after more than 1 h idle when context is large |
+| `boucle_compact.py` | UserPromptSubmit | Detects a compaction loop, asks for a handover |
+| `claude_md_taille.py` | UserPromptSubmit | Warns when a project `CLAUDE.md` is too big |
+| `suivi_taille.py` | UserPromptSubmit | Warns once per conversation when `SUIVI.md` is too big |
+| `protege_fichiers.py` | PreToolUse | Refuses `.env` writes, asks before recursive deletes |
+| `conso_5h.py` | Status line | Writes 5-hour / 7-day usage to a JSON file |
+
+## Architecture
+
+<div align="center">
+<img src="assets/pipeline-flow.svg" alt="Pipeline: plan, implement, tests, one Claude verification, done; without OpenAI: Sonnet alone plus architecte" width="900">
+</div>
+
+<div align="center">
+<img src="assets/architecture.svg" alt="Claude main thread delegates to lecteur, testeur, executant, architecte, and optionally Codex followed by one Claude verification" width="900">
+</div>
+
+Rules that came out of the measurements: one deliverable per agent; an agent never waits more than 5 minutes (prompt cache lifetime); no workaround to make a test pass (leave it red and escalate); a Codex result is never accepted as is.
+
+- **One `AGENTS.md`, plus `CLAUDE.md`** that imports it (`@AGENTS.md`), so Claude Code and Codex share the same rules.
+- **At most 3 Codex calls in parallel**, enforced by `CX_MAX_PARALLEL` in `cx.sh`.
 
 ## Key results
 
@@ -77,7 +171,7 @@ Real-codebase test ("grandeur nature"): a FastAPI backend, baseline = **7 pre-ex
 | **E8** | **Codex implements + 1 Claude verification** | **0.53 $** | **7** |
 | **E9** (replay of E8) | **Codex implements + 1 Claude verification** | **0.33 $** | **7** |
 
-Note: 7 existing tests contradicted the plan on purpose, so a few extra red tests are not necessarily faults; the brief that scored best told the implementer to adapt contradicted tests (without weakening them) and list them.
+Note: 7 existing tests contradicted the plan on purpose, so a few extra red tests are not necessarily faults.
 
 ### ENH-006 (medium: per-session limiter + batch)
 
@@ -92,98 +186,16 @@ Note: 7 existing tests contradicted the plan on purpose, so a few extra red test
 <summary><b>Bounded benches (T8-T10) and the hard investigation</b></summary>
 
 - **T8, T9, T10**: saturated (same score in every arm). Only cost separates them; on T10, agents cost about 1.85x Sonnet alone ([`results/mesures_t10_2026-10-16.md`](results/mesures_t10_2026-10-16.md)).
-- **Hard multi-file bug investigation**: Claude alone 3/5; Codex analysis (`enqueteur`, high effort) then Claude verification 5/5; medium effort 4/5 ([`results/mesures_hard_bug.md`](results/mesures_hard_bug.md), [`results/RAPPORT_COMPARATIF_2026-10-14.md`](results/RAPPORT_COMPARATIF_2026-10-14.md)). This is the only net quality gain from Codex we measured.
+- **Hard multi-file bug investigation**: Claude alone about 3/5; Codex analysis then Claude verification up to 5/5 ([`results/mesures_hard_bug.md`](results/mesures_hard_bug.md), [`results/RAPPORT_COMPARATIF_2026-10-14.md`](results/RAPPORT_COMPARATIF_2026-10-14.md)). The only net quality gain from Codex we measured.
 
 </details>
 
-## Architecture
-
-<div align="center">
-<img src="assets/pipeline-flow.svg" alt="Animated pipeline: Plan, Codex implements (3 max in parallel), tests, one Claude verification, done; without OpenAI: Sonnet alone plus architecte" width="900">
-</div>
-
-<div align="center">
-<img src="assets/architecture.svg" alt="Claude main thread delegates to lecteur, testeur, executant, architecte, and optionally Codex followed by one Claude verification" width="900">
-</div>
-
-Rules that came out of the measurements: one deliverable per agent; an agent never waits more than 5 minutes (prompt cache lifetime); no workaround to make a test pass (leave it red and escalate); a Codex result is never accepted as is.
-
-Repository features:
-
-- **One `AGENTS.md`, plus `CLAUDE.md`** that imports it (`@AGENTS.md`), so Claude Code and Codex share the same rules.
-- **At most 3 Codex calls in parallel**, enforced by `CX_MAX_PARALLEL` in `cx.sh`.
-
-## Quick start
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### Without OpenAI
-
-Sonnet alone + `architecte` at the triggers.
-
-1. Copy the agents and hooks:
-   ```bash
-   mkdir -p ~/.claude/agents ~/.claude/hooks
-   cp agents/*.md ~/.claude/agents/
-   cp hooks/*.py ~/.claude/hooks/
-   ```
-2. Copy [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md) (one line: `@AGENTS.md`) to your project root, or `AGENTS.md` to `~/.claude/CLAUDE.md` to use it globally.
-3. Optional: register the hooks in `~/.claude/settings.json` (see [`results/config-stable.md`](results/config-stable.md); adapt the Python path):
-   - `claude_md_taille.py` (UserPromptSubmit): warns when a project CLAUDE.md exceeds ~15 KB.
-   - `pause_longue.py` (UserPromptSubmit): blocks the first message after more than 1 hour idle when the context is large (the cache is gone).
-   - `conso_5h.py` (status line): writes the 5-hour / 7-day usage to a JSON file.
-
-</td>
-<td width="50%" valign="top">
-
-### With Codex
-
-Codex implements + ONE Claude verification. Skip every Codex step if `codex` is missing, logged out, or out of quota.
-
-1. Install the Codex CLI and log in (`npm i -g @openai/codex`, then `codex` once). On Windows with Git Bash, put Node and `codex` on `PATH` (or set `CX_NODE_DIR`).
-2. Install the wrapper: `cp codex/cx.sh ~/bin/cx.sh && chmod +x ~/bin/cx.sh`.
-3. Put the same [`AGENTS.md`](AGENTS.md) in your project root (or `~/.codex/AGENTS.md`): one file for Claude and Codex.
-4. Edit the model names in `cx.sh` (or export `CX_M_*`) to the ones your account offers. The names in the script (`gpt-6-luna`, `gpt-6.1-sol`, `gpt-6-astra`) are those of the author's account at measurement time.
-5. Call it WITHOUT shell redirection: `cx.sh executant "<brief>" <project_dir>`. Each call appends its token usage to `$CX_LOG`.
-
-</td>
-</tr>
-</table>
-
-Agent files are in French (the author's working language); the instructions are plain and can be translated without changing behaviour. The agents (`lecteur`, `chercheur`, `executant`, `executant-ui`, `testeur`, `architecte`, plus on-demand reviewers `chasseur-erreurs`, `securite-web`, `seo`) set their own `model:` in the front matter.
-
-**What to expect without OpenAI**: Sonnet alone is the cheapest on small and medium tasks. Agents add overhead (about 1.85x on T10); use them for large reading or parallel independent chunks, not by reflex.
-
-### Codex roles
-
-| Role | Model tier / effort | Sandbox | Use |
-|---|---|---|---|
-| `lecteur` | luna, low | read-only | read files |
-| `chercheur` | luna, low + `--search` | read-only | web research |
-| `executant` | sol, low | workspace-write | write bounded, test-controlled code |
-| `visuel` | astra, high | workspace-write | UI / mockup / CSS work, only when the user explicitly asks (visual work burns Codex quota; default is the strongest Claude model). Never `executant`: the cheap model drifts layouts |
-| `relecteur` | sol, medium | read-only | review |
-| `architecte` | astra, high | read-only | hard opinion (sparingly: quota) |
-| `analyste` | astra, medium | read-only | routine investigation / audit |
-| `enqueteur` | astra, high | read-only | hard investigation (never xhigh) |
-| `chasseur-erreurs`, `securite-web`, `seo` | sol, medium | read-only | reuse the Claude agent file as prompt |
-
-### The E8 recipe (Codex implements, Claude verifies once)
-
-The brief to Codex `executant` must contain:
-
-1. The exact test command, run directly with the venv's interpreter (not through a wrapper script such as `bash pt.sh`, which crashed in Codex's sandbox).
-2. "Adapt to the new contract the existing tests that the plan contradicts, **without weakening them**, and list them." (With "leave them red" instead: 20 failures, same score as Sonnet alone.)
-3. "**A reply without any modified file is a failure.**" (Without this sentence, 1 run out of 2 wrote nothing.)
-
-Then ONE Claude Sonnet verification, with no sub-agents and no round trip: run the full suite, read the diff, fix what Codex broke (typically test pollution). If still unsatisfied, Claude fixes alone or calls `architecte`; do not loop with Codex. Full rules: [`docs/EXECUTANT.md`](docs/EXECUTANT.md).
+**Takeaways.** Sonnet alone is the right default. Sub-agents pay off only on large, read-heavy work. Codex alone is not reliable; the good result needs the verification step.
 
 ## Methodology
 
 - Arms differ in model, sub-agents and whether Codex is used; same prompt, same base copy, same grader (the repo's own test suite for the real-codebase runs; an automatic grader or a /5 rubric for the benches).
-- Metrics: Claude cost in dollars (from the CLI JSON), turns, duration, failing/passing tests, OpenAI 5-hour quota points (fresh probe before reading a gauge).
+- Metrics: Claude cost in dollars (from the CLI JSON), turns, duration, failing/passing tests, OpenAI 5-hour quota points.
 - Bounded benches T1-T10 check quality saturation; "grandeur nature" runs check a real codebase; one hard multi-file investigation scores 5 expected findings.
 
 <details>
@@ -193,30 +205,11 @@ In [`results/`](results/): `mesures.md` (running log), `RAPPORT_COMPARATIF_2026-
 
 </details>
 
-## Built by Claude × Codex
+## Codex (optional)
 
-<table>
-<tr>
-<td width="50%" valign="top">
+Codex implements, Claude verifies once. Skip every Codex step if `codex` is missing, logged out, or out of quota. Wrapper: [`codex/cx.sh`](codex/cx.sh) (adapt the model names to your account). Roles and the E8 recipe are in [`docs/EXECUTANT.md`](docs/EXECUTANT.md) and [`AGENTS.md`](AGENTS.md). Short version of the recipe: give the exact test command; tell Codex to adapt contradicted tests without weakening them and list them; state that a reply with no modified file is a failure; then ONE Claude verification (full suite, read the diff, fix test pollution).
 
-### <img src="assets/logo-claude.svg" width="28" height="28" align="absmiddle"> Claude Code
-
-Designs, verifies, orchestrates. Main thread plus sub-agents; one verification of every Codex result.
-
-</td>
-<td width="50%" valign="top">
-
-### <img src="assets/logo-codex.svg" width="28" height="28" align="absmiddle"> Codex
-
-Implements, investigates. Bounded, test-controlled code and hard multi-file investigations.
-
-</td>
-</tr>
-</table>
-
-Both are co-authors of the commits.
-
-**Contributors:** Nsapp44 · Claude · Codex
+<img src="assets/logo-claude.svg" width="22" height="22" align="absmiddle"> Claude designs, verifies, orchestrates. <img src="assets/logo-codex.svg" width="22" height="22" align="absmiddle"> Codex implements bounded, test-controlled code.
 
 ## Honest limitations
 
@@ -224,25 +217,34 @@ Both are co-authors of the commits.
 > - **n = 1 or 2 per arm.** Run-to-run variance was not measured; differences of a few failing tests are within plausible noise.
 > - **One codebase** for the real-world runs (a single FastAPI backend, two tasks).
 > - Benches T8-T10 are saturated: they say nothing about quality differences, only cost.
-> - Model names, sandbox flags and the Git Bash / PowerShell wording in `cx.sh` are specific to one Windows machine and one OpenAI account at one point in time. Expect to adapt them.
-> - Codex alone was unreliable (state pollution; on ENH-004 a run wrote nothing). The good result needs the verification step.
+> - **The install prompt has not been tested end to end on a clean profile.** Try it on a throwaway profile first.
+> - Token figures come from one author's machine and plan (Pro, Opus-equivalent calibration); yours will differ.
+> - `passation` relies on the desktop app's session tools; elsewhere, use the manual steps.
+> - Model names, sandbox flags and the Git Bash / PowerShell wording in `cx.sh` are specific to one Windows machine and one OpenAI account at one point in time.
+> - Codex alone was unreliable (state pollution; on ENH-004 a run wrote nothing).
 > - **The "3x productivity" claim is NOT proven.** What is proven: Claude cost divided by about 4 (0.53 $ vs 2.01 $) at equal test quality on one task.
 > - Quota figures (OpenAI points) are noisy and account-dependent.
 
 ## Repository structure
 
 ```
+INSTALL.md  Install procedure for Claude Code to execute (+ manual fallback)
 AGENTS.md   Single shared rules file (Claude Code and Codex)
 CLAUDE.md   Imports AGENTS.md (@AGENTS.md)
-agents/     Claude Code sub-agent definitions (lecteur, chercheur, executant, testeur, architecte, reviewers)
-hooks/      Claude Code hooks and status line (CLAUDE.md size, long-pause guard, usage gauge)
+agents/     9 Claude Code sub-agent definitions (lecteur, testeur, executant, architecte, reviewers...)
+skills/     7 skills (passation, blender-anim-web, verif-pixel, verif-responsive-web, ...)
+hooks/      6 hooks / status line (pause guard, compaction loop, size warnings, .env protection, usage gauge)
+claude/     CLAUDE.md (global rules) and settings.modele.json (settings template)
 codex/      cx.sh wrapper (Codex roles, max 3 parallel via CX_MAX_PARALLEL)
-docs/       EXECUTANT.md: rules for using Codex as implementer / reviewer
-AGENTS.md   single shared rules file; CLAUDE.md imports it (@AGENTS.md)
 results/    measurements and reports (French)
-assets/     README visuals (SVG): hero, pipeline-flow, dashboard, plus banner and cost-chart
+docs/       EXECUTANT.md and docs/global/ (delegation, cache, video/motion, routines, mockups)
+assets/     README visuals (SVG): hero, pipeline-flow, architecture, dashboard, banner, cost-chart, logos
 ```
 
 ## License
 
 MIT, see [`LICENSE`](LICENSE).
+
+## Thanks
+
+Ideas and inspiration from [obra/superpowers](https://github.com/obra/superpowers) and [greensock/gsap-skills](https://github.com/greensock/gsap-skills) (MIT). No text copied.
