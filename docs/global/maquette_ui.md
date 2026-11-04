@@ -14,7 +14,7 @@ Sorti du CLAUDE.md le 24/10/2026 (texte original, mot pour mot ; sauvegarde comp
 - **Le code doit RESSEMBLER à la maquette validée — règle dure.** Dimensions, espacements, couleurs, textes, ordre,
   états : comme la maquette, pas « dans l'esprit ». **Interdit** de simplifier, remplacer ou laisser tomber un élément
   parce que c'est plus long ou délicat, sans le dire. Une maquette validée est faisable : difficulté technique → **1)
-  `architecte` ; 2) poser la question à Nolann** (il préfère changer la maquette que subir un contournement
+  `architecte` ; 2) poser la question à l'utilisateur** (il préfère changer la maquette que subir un contournement
   silencieux). Tout écart est une **décision à lui**, jamais un choix de Sonnet. Avant « fini » sur un écran :
   **capture côte à côte avec la maquette** et liste des écarts (même vide) dans le rapport / SUIVI.md.
 - **Points maquette réguliers** : après un lot de gros changements front + back, ou quand la dernière passe date,

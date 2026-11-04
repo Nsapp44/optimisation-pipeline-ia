@@ -35,7 +35,7 @@ Principe : rien n'est supprimé ; tout détail sorti part dans `~/.claude/docs/`
 | - Interdit de contourner | GARDER ENTIER (« 3 fois sur 3 » → docs possible) | |
 | État des lieux (1,5 Ko) | GARDER, compacter les 2 premiers points en 1 | ~1,2 Ko |
 | Maquette / interfaces (3,3 Ko) | Garder barrière Opus ultracode, « ressembler à la maquette », thème sombre ; points maquette réguliers + méthode captures → `docs/maquette_ui.md` | ~2,0 Ko |
-| Vidéo / motion (0,9 Ko) | 2 lignes ; détails Nasap3D/Éclat → `docs/video_motion.md` | ~0,35 Ko |
+| Vidéo / motion (0,9 Ko) | 2 lignes ; détails un projet vidéo → `docs/video_motion.md` | ~0,35 Ko |
 | Produit physique (0,3 Ko) | Garder tel quel (déjà un renvoi) | 0,27 Ko |
 | Codex / OpenAI (1,2 Ko) | 2 lignes ; historique tags, fin novembre → `docs/codex_illustrations.md` ; « Échelle d'un bug » = redite des déclencheurs, à retirer de là | ~0,4 Ko |
 | Skills (1,0 Ko) | Garder 3 lignes (registre-config, proposer un skill, leçons) | ~0,7 Ko |
@@ -51,8 +51,8 @@ Nouveaux fichiers docs/ : `agents_delegation.md`, `planification_routines.md`, `
 - `- Pas d'agent de surveillance ni de Monitor ligne à ligne : un seul réveil à la fin. Détail : ~/.claude/docs/planification_routines.md.`
 - `- Mesures de coût fixe, frontières de compaction, fonctionnement du hook de pause : ~/.claude/docs/contexte_cache.md.`
 - `- Points maquette réguliers, méthode de capture avant « fini », format du rapport côte à côte : ~/.claude/docs/maquette_ui.md (+ skill captures-qt).`
-- `- Vidéo/motion et modélisation 3D = Opus via architecte (jamais Sonnet pour modéliser) ; vidéos d'applis Éclat = Sonnet medium. Détail : ~/.claude/docs/video_motion.md.`
-- `- Codex/OpenAI arrêté : aucun appel. Illustrations : GPT seulement à la demande de Nolann ; avant de dessiner moi-même, proposer GPT en une ligne. Détail : ~/.claude/docs/codex_illustrations.md.`
+- `- Vidéo/motion et modélisation 3D = Opus via architecte (jamais Sonnet pour modéliser) ; vidéos d'applis un projet vidéo = Sonnet medium. Détail : ~/.claude/docs/video_motion.md.`
+- `- Codex/OpenAI arrêté : aucun appel. Illustrations : GPT seulement à la demande de l'utilisateur ; avant de dessiner moi-même, proposer GPT en une ligne. Détail : ~/.claude/docs/codex_illustrations.md.`
 
 ## 3. Taille estimée
 
@@ -68,7 +68,7 @@ Avant : 25,9 Ko (~7,5-8 k tokens relus à chaque message). Après : ~14,5-15 Ko 
 - SUIVI.md réécrit avant chaque compte rendu : la « règle dure » doit rester en gras, sinon oubli avant la pause d'1 h.
 - Interdit de contourner : garder la liste des cas (exception, cas spécial, test contre doc) ; un résumé ouvre la porte au contournement.
 - Thème sombre : garder « fond ET texte, jamais de couleur par défaut, vérifier en sombre » ; la recette Qt peut aller dans maquette_ui.md.
-- Maquette : barrière « maquette = Opus ultracode » + « tout écart = décision de Nolann » + capture côte à côte avant « fini ».
+- Maquette : barrière « maquette = Opus ultracode » + « tout écart = décision de l'utilisateur » + capture côte à côte avant « fini ».
 - Jamais changer de conversation en plein chantier ; jamais kill de tous les python.exe.
 
 ## 5. Doutes
@@ -76,6 +76,6 @@ Avant : 25,9 Ko (~7,5-8 k tokens relus à chaque message). Après : ~14,5-15 Ko 
 - Plafond 100 k caractères/agent et « 5 min » : chiffres, mais ce sont des règles d'action ; je les garde (sans le calcul).
 - Seuil ~30 k de délégation : sans lui, l'exception « geste d'une ligne » devient floue ; je garde la règle, sors les mesures.
 - Mesures « Sonnet medium = high », « Sonnet = Opus, 45-50 % moins cher » : servent à justifier le choix ; les sortir risque qu'une session repropose high/Opus. Je garderais une demi-ligne « (mesuré, voir docs) ».
-- Contradiction à trancher par Nolann : « Recherche web → toujours chercheur, jamais en direct » vs « chercheur indisponible → WebSearch en direct ». Proposé : « toujours chercheur ; s'il est indisponible, en direct ».
+- Contradiction à trancher par l'utilisateur : « Recherche web → toujours chercheur, jamais en direct » vs « chercheur indisponible → WebSearch en direct ». Proposé : « toujours chercheur ; s'il est indisponible, en direct ».
 - « CLAUDE.md ≈ 8 k » dans Coût fixe : à remesurer après ménage.
 - Planification/routines : utilisé rarement mais l'erreur coûte (routine qui bloque) ; la ligne de renvoi garde la décision, ok.

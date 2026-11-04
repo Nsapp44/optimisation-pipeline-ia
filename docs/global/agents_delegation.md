@@ -23,7 +23,7 @@ Sorti du CLAUDE.md le 24/10/2026 (texte original, mot pour mot ; sauvegarde comp
     corrections ; 2) une liste de « doutes sérieux » ou « non vérifié » → confier le plus important à `architecte`
     avant de rendre le rapport ; 3) des fichiers « non lus » dont dépend la conclusion → les lire avant de conclure,
     ou le dire en tête du rapport ; 4) aucun progrès sur 2 points d'étape, ou la même trace d'erreur qui revient ;
-    5) contradiction test/doc, module difficile à concevoir ; 6) **design/visuel sans base** (SVG, README, écran) ou **plus de 2 allers-retours avec Nolann sur le même rendu** → `architecte` conçoit et vérifie par captures, pas de retouches Sonnet en boucle (rare mais évite la perte de temps). **Son plan ne doit exiger que des commandes que la session
+    5) contradiction test/doc, module difficile à concevoir ; 6) **design/visuel sans base** (SVG, README, écran) ou **plus de 2 allers-retours avec l'utilisateur sur le même rendu** → `architecte` conçoit et vérifie par captures, pas de retouches Sonnet en boucle (rare mais évite la perte de temps). **Son plan ne doit exiger que des commandes que la session
     peut lancer (pytest…), avec un repli ; si une commande est refusée, Sonnet s'adapte, il ne s'arrête pas** (bancs
     T9 16/10 : sinon 0/5). Sans déclencheur, Sonnet seul (C coûte 1,6× A sans gain mesuré).
   - **Si je suis absent** : Sonnet ne reste pas bloqué ; il appelle `architecte` (medium) sur le point précis, puis
@@ -73,7 +73,7 @@ Sorti du CLAUDE.md le 24/10/2026 (texte original, mot pour mot ; sauvegarde comp
   - **Recherche web** → toujours `chercheur`, jamais en direct.
   - **Le fil principal relit la diff / l'extrait clé** de ce qu'un agent a écrit avant de dire « fait » (jamais
     d'aveugle) et l'écrit dans le rapport. Écrire soi-même un gros bloc qu'un agent aurait pu faire = faute.
-  - Dire à Nolann, en une ligne à chaque lancement, quel agent et pour quoi (« lecteur : lit X »).
+  - Dire à l'utilisateur, en une ligne à chaque lancement, quel agent et pour quoi (« lecteur : lit X »).
 - **Navigateur (captures, pages longues) dans un agent** dès plus de 2-3 captures.
 
 - **Un agent n'attend jamais plus de 5 min** (son cache dure 5 min) : il lance la commande longue en arrière-plan,

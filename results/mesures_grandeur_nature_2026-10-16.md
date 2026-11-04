@@ -1,4 +1,4 @@
-# Test grandeur nature — Bureau entreprise (backend), 16/10/2026
+# Test grandeur nature — une appli interne (backend), 16/10/2026
 Base : copie de app/backend, baseline 7 échecs préexistants / 538 réussis. Prompt : gn/PROMPT.txt.
 ## Tour 1 — ENH-006 (limiteur par session + batch), difficulté moyenne
 | Bras | $ Claude | Tours | Durée | OpenAI 5h | Suite complète | Remarque |
@@ -27,7 +27,7 @@ Incidents : limite de session Claude atteinte (D4/E4 en api_error, reprise 14 h)
 ## Lecture (provisoire)
 - Tâche moyenne : Sonnet seul ≈ Codex + vérif en qualité ; Codex seul pollue la suite. La vérif Claude répare.
 - Tâche difficile : la passe Codex (B4) est correcte sur le code (même 7 échecs contredits que A4 côté replay) pour 0 $ Claude + 4 pts OpenAI ; la vérif Claude coûte 0,23 $ contre 2,01 $ pour A4 (≈ 9× moins). Mais un run (E4) sur deux, Codex ne livre rien : fiabilité à confirmer.
-- Biais : un seul run par bras ; /usage de Nolann bruité ; D4 non vérifié après coupure.
+- Biais : un seul run par bras ; /usage de l'utilisateur bruité ; D4 non vérifié après coupure.
 - ×3 : plausible seulement avec Codex en première passe + vérif courte Claude ; non prouvé (n = 1).
 
 ## Tour 3 (ENH-004, 16/10) — E6, D7, F6, G6

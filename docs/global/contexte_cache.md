@@ -24,7 +24,7 @@ Sorti du CLAUDE.md le 24/10/2026 (texte original, mot pour mot ; sauvegarde comp
 - **`SUIVI.md` = ÉTAT COURANT seulement** (viser ≤ ~5 Ko, jamais d'accumulation ; relu à chaque message, 33 Ko =
   coûteux, mesuré 12/10) : décisions en vigueur, état actuel, **« Ce qui n'a pas marché et pourquoi »**, **« Prochain
   pas exact »** (section vide = « rien pour l'instant », on ne la supprime pas). **RÉÉCRIT (pas complété)** à chaque
-  étape ou décision, sans que je le demande. **Règle dure : AVANT chaque compte rendu à Nolann et à la fin de chaque
+  étape ou décision, sans que je le demande. **Règle dure : AVANT chaque compte rendu à l'utilisateur et à la fin de chaque
   étape terminée, SUIVI.md est réécrit propre (état, prochain pas exact) ; jamais de réponse avant.** Le hook de pause
   1 h bloque le message de reprise : s'il n'est pas propre à ce moment-là, on perd le fil (vécu 12/10). Ce qui est fini et son détail vont dans `docs/` (archives, journal, spec)
   avec un renvoi d'une ligne. Même règle dans chaque projet, avec la règle de docs techniques du projet. Après
