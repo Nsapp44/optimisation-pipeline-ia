@@ -1,14 +1,16 @@
 ---
 name: executant-ui
-description: OBLIGATOIRE pour ÉCRIRE ou corriger tout code d'INTERFACE web OU Qt/PySide6 (pages, CSS, composants, écrans, textes visibles, mise en page) : il a les skills de design préchargés (web-design-guidelines, design-critique, ux-copy, accessibility-review, qt-ui-design, captures-qt) et les applique. Même consigne que executant (fichier, comportement, contraintes, ce qu'il rend). Le code non visuel reste à executant. Il ne conçoit pas la maquette.
+description: OBLIGATOIRE pour ÉCRIRE ou corriger tout code d'INTERFACE web OU Qt/PySide6 (pages, CSS, composants, écrans, textes visibles, mise en page) : il a les skills de design préchargés (web-design-guidelines, design-critique, ux-copy, accessibility-review, qt-ui-design, verif-ecran) et les applique. Même consigne que executant (fichier, comportement, contraintes, ce qu'il rend). Le code non visuel reste à executant. Il ne conçoit pas la maquette.
 tools: Read, Grep, Glob, Edit, Write, Bash, PowerShell, WebFetch
 model: sonnet
 skills:
   - web-design-guidelines
-  - design:design-critique
-  - design:ux-copy
-  - design:accessibility-review
-  - verif-pixel
+  - tiktok-compte
+  - design-critique
+  - ux-copy
+  - accessibility-review
+  - qt-ui-design
+  - verif-ecran
   - gsap-scrolltrigger
   - gsap-performance
   - gsap-core

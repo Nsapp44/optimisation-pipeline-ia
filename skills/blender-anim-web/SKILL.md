@@ -10,7 +10,7 @@ Exemple de chaîne : (prep_texture.py → puzzle3d.py → render_seq.py → fini
 
 ## 0. Design d'abord (règle de l'utilisateur : « faut design avec »)
 GSAP tout seul ne suffit pas. Avant d'écrire une ligne :
-- Charger les skills de design (`web-design-guidelines`, `design:design-critique`) ET les skills GSAP (`gsap-core`, `gsap-timeline`, `gsap-scrolltrigger`, `gsap-performance`). Un agent qui n'a pas l'outil Skill reçoit leurs checklists dans son brief.
+- Charger les skills de design (`web-design-guidelines`, `design-critique`) ET les skills GSAP (`gsap-core`, `gsap-timeline`, `gsap-scrolltrigger`, `gsap-performance`). Un agent qui n'a pas l'outil Skill reçoit leurs checklists dans son brief.
 - Écrire le storyboard en 4-6 temps (ce que l'œil regarde à chaque temps, le texte et sa place, le rythme : où on accélère et où on pose). Une seule idée par temps. La fin = produit posé + phrase + lien vers la personnalisation.
 - Respecter la charte de la page : fond, typo, accent, marges. L'objet flotte sur le fond de la page, jamais dans un carré.
 
